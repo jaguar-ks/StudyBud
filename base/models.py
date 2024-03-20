@@ -9,8 +9,8 @@ class Topic(models.Model):
 
 # The Room model
 class Room(models.Model):
-    # participants = 
     
+    members = models.ManyToManyField(User, related_name='members', blank=True)
     host = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
     topic = models.ForeignKey(Topic, on_delete=models.SET_NULL, null=True)
     # This atribute represent the room's name
