@@ -30,7 +30,7 @@
             {% endfor %}
         </div>
         
-        {% if request.user.is_authenticated and request.user in room.members %}
+        {% if request.user.is_authenticated and request.user in members %}
         <div class='comment-form'>
             <form method="POST" action="">
                 {% csrf_token %}

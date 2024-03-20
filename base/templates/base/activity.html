@@ -1,0 +1,9 @@
+<h3>Recent Activity</h3>
+<hr>
+{% for msg in msgs %}
+<div>
+    <small>@{{msg.user}} {{msg.created|timesince}} ago <br></small>
+    <small>replied to "<a href="{% url 'room' msg.room.id %}?q={{msg.room.name}}" >{{msg.room}}</a>"</small>
+    <p>{{msg}}</p>
+</div>
+{% endfor %}

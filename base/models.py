@@ -43,5 +43,9 @@ class Message(models.Model):
     
     # Message string represantation
     def __str__(self):
-        return self.body[0:50]
+        return self.body[0:50]+'...'
+    
+    class Meta:
+        ordering = ['-updated', '-created']
+
 
