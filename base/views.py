@@ -13,6 +13,7 @@ from django.contrib.auth import authenticate, login , logout
 #     {'id':4, 'name':'Learn JavaScript'},
 # ]
 
+# Logging Page
 def loginPage(request):
     if request.method == 'POST':
         username = request.POST.get('username')
@@ -30,10 +31,12 @@ def loginPage(request):
     context = {}
     return render(request, 'base/login_register.html', context)
 
+# Logging out user
 def logoutUser(request):
     logout(request)
     return redirect('home')
 
+# Home Page
 def home(request):
     q = request.GET.get('q') if request.GET.get('q') != None else ''
     rooms = Room.objects.filter(
@@ -47,12 +50,14 @@ def home(request):
     return render(request, 'base/home.html', context)
     # return HttpResponse('Hello World!')
 
+# Room Page
 def room(request, pk):
     room = Room.objects.get(id=pk)
     context = {'room':room}
     return render(request, 'base/room.html', context)
     # return HttpResponse('room')
 
+# Creating Room Page
 def createRoom(request):
     form = RoomForm()
     if request.method == 'POST':
@@ -63,6 +68,7 @@ def createRoom(request):
     context = {'form':form}
     return render(request, 'base/room_form.html', context)
 
+# Updating Room info Page
 def updateRoom(request, pk):
     room = Room.objects.get(id=pk)
     form = RoomForm(instance=room)
@@ -74,6 +80,7 @@ def updateRoom(request, pk):
     context = {'form':form}
     return render(request, 'base/room_form.html', context)
 
+# Deleting Room Page
 def deleteRoom(request, pk):
     room = Room.objects.get(id=pk)
     if request.method == "POST":
